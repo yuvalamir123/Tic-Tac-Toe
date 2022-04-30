@@ -19,6 +19,7 @@ public class GameActivity extends AppCompatActivity {
     boolean Xturn = true;
     HashMap<Integer, Boolean> state = new HashMap<>();
     TextView turn;
+    TextView timePassed;
 
     long start, finish, timeElapsed;
 
@@ -40,6 +41,8 @@ public class GameActivity extends AppCompatActivity {
 
         turn = findViewById(R.id.turn);
         turn.setText(R.string.Xturn);
+
+        timePassed = findViewById(R.id.timePassed);
 
         loaction1 = findViewById(R.id.location1);
         loaction2 = findViewById(R.id.location2);
@@ -63,6 +66,8 @@ public class GameActivity extends AppCompatActivity {
         ImageView[] imageViews = {loaction1, loaction2, loaction3, loaction4, loaction5, loaction6, loaction7, loaction8, loaction9};
 
         start = System.currentTimeMillis();
+
+        
 
         for (int i = 0; i < imageViews.length; i++) {
             int finalI = i;

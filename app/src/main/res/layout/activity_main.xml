@@ -4,54 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="414dp"
-        android:layout_height="605dp"
+        android:id="@+id/background"
+        android:layout_width="410dp"
+        android:layout_height="599dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.309"
-        app:srcCompat="@drawable/background" />
-
-    <Button
-        android:id="@+id/playButton"
-        android:layout_width="219dp"
-        android:layout_height="69dp"
-        android:backgroundTint="#B6A9A9"
-        android:text="@string/play"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.871" />
-
-    <Button
-        android:id="@+id/goToListButton"
-        android:layout_width="219dp"
-        android:layout_height="69dp"
-        android:backgroundTint="#B6A9A9"
-        android:text="@string/go_to_record_list"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/dark_background" />
 
     <TextView
         android:id="@+id/header"
         android:layout_width="321dp"
         android:layout_height="68dp"
+        android:fontFamily="casual"
         android:text="@string/tic_tac_toe"
-        android:textSize="48sp"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp"
         app:layout_constraintBottom_toTopOf="@+id/playButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.966"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.076" />
+        app:layout_constraintVertical_bias="0.118" />
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="219dp"
+        android:layout_height="69dp"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/play"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.844" />
+
+    <Button
+        android:id="@+id/goToListButton"
+        android:layout_width="219dp"
+        android:layout_height="69dp"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/go_to_record_list"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.962" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
