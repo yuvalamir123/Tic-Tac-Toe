@@ -2,6 +2,7 @@ package com.example.tic_tac_toe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,8 @@ public class GameActivity extends AppCompatActivity {
     HashMap<Integer, Boolean> state = new HashMap<>();
     TextView turn;
 
-    ArrayList<int[]> winner_locations = new ArrayList<>();
+    long start, finish, timeElapsed;
+
     int[] win_location1 = {1,2,3};
     int[] win_location2 = {4,5,6};
     int[] win_location3 = {7,8,9};
@@ -29,6 +31,7 @@ public class GameActivity extends AppCompatActivity {
     int[] win_location7 = {1,5,9};
     int[] win_location8 = {3,5,7};
 
+    ArrayList<int[]> winner_locations = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,18 @@ public class GameActivity extends AppCompatActivity {
         loaction8 = findViewById(R.id.location8);
         loaction9 = findViewById(R.id.location9);
 
+        winner_locations.add(win_location1);
+        winner_locations.add(win_location2);
+        winner_locations.add(win_location3);
+        winner_locations.add(win_location4);
+        winner_locations.add(win_location5);
+        winner_locations.add(win_location6);
+        winner_locations.add(win_location7);
+        winner_locations.add(win_location8);
+
         ImageView[] imageViews = {loaction1, loaction2, loaction3, loaction4, loaction5, loaction6, loaction7, loaction8, loaction9};
+
+        start = System.currentTimeMillis();
 
         for (int i = 0; i < imageViews.length; i++) {
             int finalI = i;
@@ -59,41 +73,42 @@ public class GameActivity extends AppCompatActivity {
                     else
                         imageViews[finalI].setImageResource(R.drawable.o);
                     state.put(finalI + 1, Xturn);
+                    CheckForWinner();
                     turn.setText((Xturn ? "O" : "X") + " turn");
                     Xturn = !Xturn;
                 }
             });
         }
-        winner_locations.add(win_location1);
-        winner_locations.add(win_location2);
-        winner_locations.add(win_location3);
-        winner_locations.add(win_location4);
-        winner_locations.add(win_location5);
-        winner_locations.add(win_location6);
-        winner_locations.add(win_location7);
-        winner_locations.add(win_location8);
-
     }
-
 
     void CheckForWinner() {
         for (int[] win_location: winner_locations) {
             int Xscore = 0;
             int Oscore = 0;
             for (int i: win_location) {
-                if (state.get(i))
+                if (state.containsKey(i) && state.get(i))
                     Xscore += 1;
-                else
+                else if (state.containsKey(i))
                     Oscore += 1;
             }
             if (Xscore == 3){
                 //X win
+                finish = System.currentTimeMillis();
+                timeElapsed = finish - start;
+                Intent intent = new Intent(this,WinActivity.class);
+                intent.putExtra("winner", "X");
+                intent.putExtra("game time", timeElapsed);
+                startActivity(intent);
             }
             else if (Oscore == 3){
                 //O win
+                finish = System.currentTimeMillis();
+                timeElapsed = finish - start;
+                Intent intent = new Intent(this,WinActivity.class);
+                intent.putExtra("winner", "O");
+                intent.putExtra("game time", timeElapsed);
+                startActivity(intent);
             }
         }
     }
-
-
 }
