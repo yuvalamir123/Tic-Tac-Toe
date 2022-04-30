@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         playButton.setOnClickListener(view -> {
             Intent intent = new Intent(this,GameActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
     }

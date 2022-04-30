@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         turn = findViewById(R.id.turn);
-        turn.setText("X turn");
+        turn.setText(R.string.Xturn);
 
         loaction1 = findViewById(R.id.location1);
         loaction2 = findViewById(R.id.location2);
@@ -96,8 +96,8 @@ public class GameActivity extends AppCompatActivity {
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
                 Intent intent = new Intent(this,WinActivity.class);
-                intent.putExtra("winner", "X");
-                intent.putExtra("game time", timeElapsed);
+                intent.putExtra("winner", "X is The winner");
+                intent.putExtra("game time", timeElapsed / 1000 + " Seconds");
                 startActivity(intent);
             }
             else if (Oscore == 3){
@@ -105,9 +105,19 @@ public class GameActivity extends AppCompatActivity {
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
                 Intent intent = new Intent(this,WinActivity.class);
-                intent.putExtra("winner", "O");
-                intent.putExtra("game time", timeElapsed);
+                intent.putExtra("winner", "O is The winner");
+                intent.putExtra("game time", timeElapsed / 1000 + " Seconds");
                 startActivity(intent);
+            }
+            else if(state.keySet().size() == 9){
+                //tie
+                finish = System.currentTimeMillis();
+                timeElapsed = finish - start;
+                Intent intent = new Intent(this,WinActivity.class);
+                intent.putExtra("winner", "No winner its a Tie");
+                intent.putExtra("game time", timeElapsed / 1000 + " Seconds");
+                startActivity(intent);
+                break;
             }
         }
     }
