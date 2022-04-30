@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -18,7 +19,16 @@ public class GameActivity extends AppCompatActivity {
     HashMap<Integer, Boolean> state = new HashMap<>();
     TextView turn;
 
-    int[][][] threeD_arr = new int[10][20][30];
+    ArrayList<int[]> winner_locations = new ArrayList<>();
+    int[] win_location1 = {1,2,3};
+    int[] win_location2 = {4,5,6};
+    int[] win_location3 = {7,8,9};
+    int[] win_location4 = {1,4,7};
+    int[] win_location5 = {2,5,8};
+    int[] win_location6 = {3,6,9};
+    int[] win_location7 = {1,5,9};
+    int[] win_location8 = {3,5,7};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +63,35 @@ public class GameActivity extends AppCompatActivity {
                     Xturn = !Xturn;
                 }
             });
+        }
+        winner_locations.add(win_location1);
+        winner_locations.add(win_location2);
+        winner_locations.add(win_location3);
+        winner_locations.add(win_location4);
+        winner_locations.add(win_location5);
+        winner_locations.add(win_location6);
+        winner_locations.add(win_location7);
+        winner_locations.add(win_location8);
+
+    }
+
+
+    void CheckForWinner() {
+        for (int[] win_location: winner_locations) {
+            int Xscore = 0;
+            int Oscore = 0;
+            for (int i: win_location) {
+                if (state.get(i))
+                    Xscore += 1;
+                else
+                    Oscore += 1;
+            }
+            if (Xscore == 3){
+                //X win
+            }
+            else if (Oscore == 3){
+                //O win
+            }
         }
     }
 
