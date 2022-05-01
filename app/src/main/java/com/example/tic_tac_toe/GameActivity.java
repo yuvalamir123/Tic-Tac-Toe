@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -66,8 +67,7 @@ public class GameActivity extends AppCompatActivity {
         ImageView[] imageViews = {loaction1, loaction2, loaction3, loaction4, loaction5, loaction6, loaction7, loaction8, loaction9};
 
         start = System.currentTimeMillis();
-
-        
+        Timer();
 
         for (int i = 0; i < imageViews.length; i++) {
             int finalI = i;
@@ -84,6 +84,20 @@ public class GameActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void Timer() {
+        new Thread(() -> {
+            try {
+                long currentTime = System.currentTimeMillis();
+                timeElapsed = currentTime - start;
+                timePassed.setText("time passed: " + timeElapsed / 1000 + " Seconds");
+                Thread.sleep(1000);
+                Timer();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     void CheckForWinner() {

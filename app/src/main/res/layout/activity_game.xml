@@ -28,7 +28,7 @@
         android:layout_height="48dp"
         android:fontFamily="casual"
         android:textColor="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/grid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.233"
