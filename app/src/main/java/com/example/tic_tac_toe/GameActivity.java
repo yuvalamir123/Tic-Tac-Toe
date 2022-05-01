@@ -81,7 +81,7 @@ public class GameActivity extends AppCompatActivity {
                         imageViews[finalI].setImageResource(R.drawable.o);
                     state.put(finalI + 1, Xturn);
                     CheckForWinner();
-                    turn.setText((Xturn ? "O" : "X") + " turn");
+                    turn.setText((Xturn ? getString(R.string.O) : getString(R.string.X)) + " turn");
                     Xturn = !Xturn;
                 }
             });
@@ -103,6 +103,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     void CheckForWinner() {
+        boolean hasWinner = false;
         for (int[] win_location: winner_locations) {
             int Xscore = 0;
             int Oscore = 0;
@@ -112,57 +113,19 @@ public class GameActivity extends AppCompatActivity {
                 else if (state.containsKey(i))
                     Oscore += 1;
             }
+
             if (Xscore == 3){
                 //X win
+                hasWinner = true;
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
                 Intent intent = new Intent(this,WinActivity.class);
-                intent.putExtra("winner", "X is The winner");
-                intent.putExtra("game time", String.valueOf(timeElapsed/ 1000));
+                intent.putExtra(getString(R.string.winner), getString(R.string.X_is_The_winner));
+                intent.putExtra(getString(R.string.game_time), String.valueOf(timeElapsed/ 1000));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 new Thread(() -> {
                     try {
-                        turn.setText("Game Over");
-                        turn.setTextColor(Color.RED);
-                        timePassed.setText("");
-                        Thread.sleep(1500);
-                        startActivity(intent);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }).start();
-            }
-            else if (Oscore == 3){
-                //O win
-                finish = System.currentTimeMillis();
-                timeElapsed = finish - start;
-                Intent intent = new Intent(this,WinActivity.class);
-                intent.putExtra("winner", "O is The winner");
-                intent.putExtra("game time", String.valueOf(timeElapsed/ 1000));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                new Thread(() -> {
-                    try {
-                        turn.setText("Game Over");
-                        turn.setTextColor(Color.RED);
-                        timePassed.setText("");
-                        Thread.sleep(1500);
-                        startActivity(intent);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }).start();
-            }
-            else if(state.keySet().size() == 9){
-                //tie
-                finish = System.currentTimeMillis();
-                timeElapsed = finish - start;
-                Intent intent = new Intent(this,WinActivity.class);
-                intent.putExtra("winner", "No winner - its a Tie");
-                intent.putExtra("game time", String.valueOf(timeElapsed/ 1000));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                new Thread(() -> {
-                    try {
-                        turn.setText("Game Over");
+                        turn.setText(R.string.Game_Over);
                         turn.setTextColor(Color.RED);
                         timePassed.setText("");
                         Thread.sleep(1500);
@@ -173,6 +136,48 @@ public class GameActivity extends AppCompatActivity {
                 }).start();
                 break;
             }
+            else if (Oscore == 3){
+                //O win
+                hasWinner = true;
+                finish = System.currentTimeMillis();
+                timeElapsed = finish - start;
+                Intent intent = new Intent(this,WinActivity.class);
+                intent.putExtra(getString(R.string.winner), getString(R.string.O_is_The_winner));
+                intent.putExtra(getString(R.string.game_time), String.valueOf(timeElapsed/ 1000));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                new Thread(() -> {
+                    try {
+                        turn.setText(getString(R.string.Game_Over));
+                        turn.setTextColor(Color.RED);
+                        timePassed.setText("");
+                        Thread.sleep(1500);
+                        startActivity(intent);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
+                break;
+            }
+        }
+        if(state.keySet().size() == 9 && !hasWinner){
+            //tie
+            finish = System.currentTimeMillis();
+            timeElapsed = finish - start;
+            Intent intent = new Intent(this,WinActivity.class);
+            intent.putExtra(getString(R.string.winner), getString(R.string.No_winner_its_a_Tie));
+            intent.putExtra(getString(R.string.game_time), String.valueOf(timeElapsed/ 1000));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            new Thread(() -> {
+                try {
+                    turn.setText(getString(R.string.Game_Over));
+                    turn.setTextColor(Color.RED);
+                    timePassed.setText("");
+                    Thread.sleep(1500);
+                    startActivity(intent);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
     }
 }

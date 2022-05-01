@@ -18,7 +18,7 @@ public interface WinnerDao {
     @Query("SELECT * FROM winnerData WHERE name LIKE :name LIMIT 1")
     WinnerData findByName(String name);
 
-    @Query("SELECT * FROM winnerData ORDER BY score LIMIT 10")
+    @Query("SELECT * FROM winnerData ORDER BY cast(score as int) LIMIT 10")
     List<WinnerData> getTopTen();
 
     @Query("SELECT id FROM winnerData ORDER BY id desc LIMIT 1")
@@ -29,4 +29,5 @@ public interface WinnerDao {
 
     @Delete
     void delete(WinnerData winnerData);
+
 }

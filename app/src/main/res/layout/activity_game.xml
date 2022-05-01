@@ -27,7 +27,7 @@
         android:layout_width="214dp"
         android:layout_height="48dp"
         android:fontFamily="casual"
-        android:text="value"
+        android:text="@string/value"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/grid"

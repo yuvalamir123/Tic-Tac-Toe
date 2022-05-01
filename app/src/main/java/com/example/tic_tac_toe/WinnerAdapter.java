@@ -35,7 +35,7 @@ public class WinnerAdapter extends RecyclerView.Adapter<WinnerAdapter.ViewHolder
         viewHolder.name.setText(name);
 
         String score = data.get(i).getScore();
-        viewHolder.score.setText(score);
+        viewHolder.score.setText(score + " Seconds");
 
         String date = data.get(i).getDate();
         viewHolder.date.setText(date);
