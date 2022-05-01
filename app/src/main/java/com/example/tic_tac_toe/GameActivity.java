@@ -118,7 +118,7 @@ public class GameActivity extends AppCompatActivity {
                 timeElapsed = finish - start;
                 Intent intent = new Intent(this,WinActivity.class);
                 intent.putExtra("winner", "X is The winner");
-                intent.putExtra("game time", "game time: " + timeElapsed / 1000 + " Seconds");
+                intent.putExtra("game time", String.valueOf(timeElapsed/ 1000));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 new Thread(() -> {
                     try {
@@ -138,7 +138,7 @@ public class GameActivity extends AppCompatActivity {
                 timeElapsed = finish - start;
                 Intent intent = new Intent(this,WinActivity.class);
                 intent.putExtra("winner", "O is The winner");
-                intent.putExtra("game time", "game time: " + timeElapsed / 1000 + " Seconds");
+                intent.putExtra("game time", String.valueOf(timeElapsed/ 1000));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 new Thread(() -> {
                     try {
@@ -158,7 +158,7 @@ public class GameActivity extends AppCompatActivity {
                 timeElapsed = finish - start;
                 Intent intent = new Intent(this,WinActivity.class);
                 intent.putExtra("winner", "No winner - its a Tie");
-                intent.putExtra("game time", "game time: " + timeElapsed / 1000 + " Seconds");
+                intent.putExtra("game time", String.valueOf(timeElapsed/ 1000));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 new Thread(() -> {
                     try {

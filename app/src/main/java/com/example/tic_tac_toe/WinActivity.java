@@ -22,11 +22,18 @@ public class WinActivity extends AppCompatActivity {
         String result = getIntent().getStringExtra("winner");
         String time = getIntent().getStringExtra("game time");
         res.setText(result);
-        gameTime.setText(time);
+        gameTime.setText("game time: " + Long.parseLong(time) + " Seconds");
 
         playAgain = findViewById(R.id.playAgainButton);
         playAgain.setOnClickListener(view -> {
             Intent intent = new Intent(this,GameActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        });
+
+        goToList = findViewById(R.id.goToRecordButton);
+        goToList.setOnClickListener(view -> {
+            Intent intent = new Intent(this,WinnersListActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });

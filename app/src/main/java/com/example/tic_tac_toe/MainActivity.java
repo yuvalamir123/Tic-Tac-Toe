@@ -24,5 +24,11 @@ public class MainActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
+
+        goToList.setOnClickListener(view -> {
+            Intent intent = new Intent(this,WinnersListActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        });
     }
 }
