@@ -1,11 +1,26 @@
 package com.example.tic_tac_toe;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class WinnerData {
+
+    @PrimaryKey
+    int id;
+
+    @ColumnInfo(name = "name")
     String name;
+
+    @ColumnInfo(name = "score")
     String score;
+
+    @ColumnInfo(name = "date")
     String date;
 
-    public WinnerData(String name, String score, String date) {
+    public WinnerData(int id, String name, String score, String date) {
+        this.id = id;
         this.name = name;
         this.score = score;
         this.date = date;

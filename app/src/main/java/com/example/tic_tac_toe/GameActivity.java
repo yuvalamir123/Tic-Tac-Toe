@@ -125,7 +125,7 @@ public class GameActivity extends AppCompatActivity {
                         turn.setText("Game Over");
                         turn.setTextColor(Color.RED);
                         timePassed.setText("");
-                        Thread.sleep(2000);
+                        Thread.sleep(1500);
                         startActivity(intent);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -145,7 +145,7 @@ public class GameActivity extends AppCompatActivity {
                         turn.setText("Game Over");
                         turn.setTextColor(Color.RED);
                         timePassed.setText("");
-                        Thread.sleep(2000);
+                        Thread.sleep(1500);
                         startActivity(intent);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -165,7 +165,7 @@ public class GameActivity extends AppCompatActivity {
                         turn.setText("Game Over");
                         turn.setTextColor(Color.RED);
                         timePassed.setText("");
-                        Thread.sleep(2000);
+                        Thread.sleep(1500);
                         startActivity(intent);
                     } catch (InterruptedException e) {
                         e.printStackTrace();

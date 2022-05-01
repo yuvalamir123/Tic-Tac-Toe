@@ -1,48 +1,50 @@
 package com.example.tic_tac_toe;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.content.SharedPreferences;
-import android.os.Build;
+import androidx.room.Room;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.ArraySet;
-import java.util.ArrayList;
-import java.util.Date;
+import android.view.View;
+import android.widget.Button;
+
 import java.util.List;
-import java.util.Set;
 
 public class WinnersListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    Button backMain;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winners_list);
 
-        SharedPreferences settings = getApplicationContext().getSharedPreferences("winnersss", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        ArraySet<String> winnerData = new ArraySet<>();
-        winnerData.add("Yuval");
-        winnerData.add("6");
-        winnerData.add(new Date().toString());
-        editor.putStringSet("1", winnerData);
-
-        editor.apply();
 
         recyclerView = findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<WinnerData> winnerDataList = new ArrayList<>();
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name").build();
 
-        Set<String> getWinnerData1 = settings.getStringSet("1", winnerData);
-        Object[] data = getWinnerData1.toArray();
-        winnerDataList.add(new WinnerData(data[0].toString() ,data[1].toString(), data[2].toString()));
+        WinnerDao winnerDao = db.winnerDataDao();
 
-        WinnerAdapter winnerAdapter = new WinnerAdapter(this, winnerDataList);
-        recyclerView.setAdapter(winnerAdapter);
+        Thread t = new Thread(() -> {
+            List<WinnerData> winnerDataList = winnerDao.getTopTen();
+            runOnUiThread(() -> {
+                WinnerAdapter winnerAdapter = new WinnerAdapter(this, winnerDataList);
+                recyclerView.setAdapter(winnerAdapter);
+            });
+        });
+        t.start();
+
+        backMain = findViewById(R.id.backMainButton);
+        backMain.setOnClickListener(view -> {
+            Intent intent = new Intent(this,MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        });
     }
 }

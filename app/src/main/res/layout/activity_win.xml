@@ -7,6 +7,24 @@
     android:background="@android:color/black"
     tools:context=".WinActivity">
 
+    <Button
+        android:id="@+id/saveResButton"
+        android:layout_width="138dp"
+        android:layout_height="66dp"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="casual"
+        android:hint="@string/enter_your_name"
+        android:text="@string/save_result"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.216" />
+
+
     <ImageView
         android:id="@+id/backwin"
         android:layout_width="408dp"
@@ -19,25 +37,43 @@
         app:layout_constraintVertical_bias="0.434"
         app:srcCompat="@drawable/dark_background" />
 
+    <EditText
+        android:id="@+id/enterName"
+        android:layout_width="214dp"
+        android:layout_height="68dp"
+        android:fontFamily="casual"
+        android:hint="@string/enter_your_name"
+        android:shadowColor="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22" />
+
     <TextView
         android:id="@+id/time"
         android:layout_width="214dp"
-        android:layout_height="68dp"
+        android:layout_height="47dp"
         android:fontFamily="casual"
         android:text="time"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.119" />
 
     <TextView
         android:id="@+id/results"
-        android:layout_width="214dp"
-        android:layout_height="68dp"
+        android:layout_width="212dp"
+        android:layout_height="47dp"
         android:fontFamily="casual"
         android:text="res"
         android:textColor="#FFFFFF"
@@ -47,7 +83,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintVertical_bias="0.024" />
 
     <Button
         android:id="@+id/goToRecordButton"

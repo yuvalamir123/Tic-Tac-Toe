@@ -5,4 +5,6 @@
     <string name="tic_tac_toe">Tic Tac Toe</string>
     <string name="Xturn">X turn</string>
     <string name="play_again">Play Again</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="save_result">Save Result</string>
 </resources>
