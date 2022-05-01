@@ -1,8 +1,10 @@
 package com.example.tic_tac_toe;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -91,7 +93,7 @@ public class GameActivity extends AppCompatActivity {
             try {
                 long currentTime = System.currentTimeMillis();
                 timeElapsed = currentTime - start;
-                timePassed.setText("time passed: " + timeElapsed / 1000 + " Seconds");
+                timePassed.setText(timePassed.getText().toString().equals("") ? "" : "time passed: " + timeElapsed / 1000 + " Seconds" );
                 Thread.sleep(1000);
                 Timer();
             } catch (InterruptedException e) {
@@ -116,8 +118,19 @@ public class GameActivity extends AppCompatActivity {
                 timeElapsed = finish - start;
                 Intent intent = new Intent(this,WinActivity.class);
                 intent.putExtra("winner", "X is The winner");
-                intent.putExtra("game time", timeElapsed / 1000 + " Seconds");
-                startActivity(intent);
+                intent.putExtra("game time", "game time: " + timeElapsed / 1000 + " Seconds");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                new Thread(() -> {
+                    try {
+                        turn.setText("Game Over");
+                        turn.setTextColor(Color.RED);
+                        timePassed.setText("");
+                        Thread.sleep(2000);
+                        startActivity(intent);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             }
             else if (Oscore == 3){
                 //O win
@@ -125,17 +138,39 @@ public class GameActivity extends AppCompatActivity {
                 timeElapsed = finish - start;
                 Intent intent = new Intent(this,WinActivity.class);
                 intent.putExtra("winner", "O is The winner");
-                intent.putExtra("game time", timeElapsed / 1000 + " Seconds");
-                startActivity(intent);
+                intent.putExtra("game time", "game time: " + timeElapsed / 1000 + " Seconds");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                new Thread(() -> {
+                    try {
+                        turn.setText("Game Over");
+                        turn.setTextColor(Color.RED);
+                        timePassed.setText("");
+                        Thread.sleep(2000);
+                        startActivity(intent);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             }
             else if(state.keySet().size() == 9){
                 //tie
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
                 Intent intent = new Intent(this,WinActivity.class);
-                intent.putExtra("winner", "No winner its a Tie");
-                intent.putExtra("game time", timeElapsed / 1000 + " Seconds");
-                startActivity(intent);
+                intent.putExtra("winner", "No winner - its a Tie");
+                intent.putExtra("game time", "game time: " + timeElapsed / 1000 + " Seconds");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                new Thread(() -> {
+                    try {
+                        turn.setText("Game Over");
+                        turn.setTextColor(Color.RED);
+                        timePassed.setText("");
+                        Thread.sleep(2000);
+                        startActivity(intent);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
                 break;
             }
         }
