@@ -65,7 +65,7 @@ public class WinActivity extends AppCompatActivity {
                     isFaster = true;
                 }
             }
-            if (!isFaster || result.contains("Tie")){
+            if (winnersData.size() != 0 && (!isFaster || result.contains("Tie"))){
                 runOnUiThread(()->{
                     saveRes.setVisibility(View.INVISIBLE);
                     name_text.setVisibility(View.INVISIBLE);
